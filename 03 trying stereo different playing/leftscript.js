@@ -12,7 +12,7 @@ const audioContextL = new AudioContext(); // make a audioContextL
 
 const gainNodeL = audioContextL.createGain(); // the gain node for volume control
 
-const pannerOptionsL = { pan : -1 }; // pan options for panning (stereo panning)
+const pannerOptionsL = { pan : -1 }; // pan options for panning (stereo panning) -1 for left pan
 
 const pannerNodeL = new StereoPannerNode(audioContextL, pannerOptionsL); // the panner node for pan control
 
