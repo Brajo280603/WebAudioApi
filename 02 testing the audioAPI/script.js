@@ -6,15 +6,15 @@ let volumeSlider = document.querySelector("#volume")
 let panSlider = document.querySelector("#panner");
 
 // for legacy browsers
-const AudioContext = window.AudioContext || window.webkitAudioContext; 
+const AudioContext = window.AudioContext || window.webkitAudioContext; // audio context for legacy browsers (not supported)
 
-const audioContext = new AudioContext();
+const audioContext = new AudioContext(); // make a audioContext
 
-const gainNode = audioContext.createGain();
+const gainNode = audioContext.createGain(); // the gain node for volume control
 
-const pannerOptions = { pan : 0 };
+const pannerOptions = { pan : 0 }; // pan options for panning (stereo panning)
 
-const pannerNode = new StereoPannerNode(audioContext, pannerOptions);
+const pannerNode = new StereoPannerNode(audioContext, pannerOptions); // the panner node for pan control
 
 
 
@@ -25,7 +25,7 @@ playBtn.disabled = true;
 
 // input an audio file
 inputFileTag.addEventListener("change",()=>{
-    readFile();
+    readFile(); // reading file
 })
 
 
@@ -56,24 +56,24 @@ function readFile(){
 
 
 function playAudio(track){ // set the audio file as source track and load with audio tag and play
-    sourceTag.src = track;
-    audioTag.load();
+    sourceTag.src = track; // setting track as audio source
+    audioTag.load(); // loading the track on audio element
     // audioTag.play(); 
-    attachToAudioGraph(track);
+    attachToAudioGraph();
 }
 
-function attachToAudioGraph(element){
-    playBtn.disabled = false;
-    track = audioContext.createMediaElementSource(audioTag)
+function attachToAudioGraph(){
+    playBtn.disabled = false; // enable the playbtn
+    track = audioContext.createMediaElementSource(audioTag) // creating a mediasource for audio context
     // track.connect(audioContext.destination)
     // track.connect(gainNode).connect(audioContext.destination)
-    track.connect(gainNode).connect(pannerNode).connect(audioContext.destination)
+    track.connect(gainNode).connect(pannerNode).connect(audioContext.destination) //connect all nodes and destination to track(mediasource) (learn more on mdn [[https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API/Using_Web_Audio_API#audio_context]])
     
 }
 
 
 playBtn.addEventListener("click",()=>{
-    playPauseHandler();
+    playPauseHandler(); // handle playpause
 },false)
 
 function playPauseHandler(){
@@ -97,14 +97,14 @@ function playPauseHandler(){
 }
 
 audioTag.addEventListener("ended",()=>{
-    playBtn.dataset.playing = "false"
+    playBtn.dataset.playing = "false" // if track ended set playing attribute to false
 },false)
 
 
 volumeSlider.addEventListener("input",()=>{
-    gainNode.gain.value = volumeSlider.value;
+    gainNode.gain.value = volumeSlider.value; // control volume
 },false)
 
 panSlider.addEventListener("input", ()=>{
-    pannerNode.pan.value = panSlider.value;
+    pannerNode.pan.value = panSlider.value; // control gain
 },false)

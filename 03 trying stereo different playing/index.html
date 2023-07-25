@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h4>left</h4>
+        <input type="file" id="fileInputL">
+
+        <audio controls id="audioTagL">
+            <source id="dataSourceL">
+        </audio>
+
+        <button id="playBtnL" data-playing="false" role="switch" aria-checked="false">
+            <span>play/pause</span>
+        </button>
+
+        <label for="#volume">volume</label>
+        <input type="range" id="volumeL" min="0" max="2" value="1" step="0.01">
+
+        <label for="#panner" style="display: none;">pan</label>
+        <input type="range" id="pannerL" min="-1" max="1" value="0" step="0.01" style="display: none;">
+    </div>
+
+    <div>
+        <h4>right</h4>
+        <input type="file" id="fileInputR">
+
+        <audio controls id="audioTagR">
+            <source id="dataSourceR">
+        </audio>
+
+        <button id="playBtnR" data-playing="false" role="switch" aria-checked="false">
+            <span>play/pause</span>
+        </button>
+
+        <label for="#volume">volume</label>
+        <input type="range" id="volumeR" min="0" max="2" value="1" step="0.01">
+
+        <label for="#panner" style="display: none;">pan</label>
+        <input type="range" id="pannerR" min="-1" max="1" value="0" step="0.01" style="display: none;">
+    </div>
+
+</body>
+
+<script src="./leftscript.js"></script>
+<script src="./rightscript.js"></script>
+</html>
